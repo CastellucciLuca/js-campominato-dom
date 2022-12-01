@@ -1,0 +1,34 @@
+header{
+    height: 120px;
+}
+
+main{
+    background-color: #7fffd4;
+    height: calc(100vh - 220px);
+}
+
+footer{
+    height: 100px;
+}
+
+div div.box{
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    background-color: azure;
+    border: 2px solid black;
+    text-align: center;
+}
+div div.box.bgCarino{
+    background-color: red;
+}
+.custom-align-center{
+    align-items: center;
+}
+#boolean-logo{
+    height: 70px;
+}
+#campoMinato{
+    height: 600px;
+    width: 600px;
+}
+
