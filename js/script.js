@@ -74,8 +74,9 @@ play.addEventListener ('click', function() {
     for ( let i = 0 ; i < numberOfMines ; i++) {
         singleMinePosition(minesArray, 1, playgroundCells)
     }
+    //Se colpisco una mina mi segna il numero della casella nella console
+    console.log(minesArray);
     for ( let i = 1 ; i < playgroundCells + 1 ; i++) {
         getElementDiv(i, campoMinato, i, minesArray);
     }
-    console.log(minesArray)
 });
