@@ -14,14 +14,17 @@ function getElementDiv (contentText,playground,printNumber,gameRules) {
     // APPENDO ARGOMENTO ALLA VARIABILE (campoMinato)
     playground.append(createdElement);
     //Event Listener box (casellina box gioco)
-    createdElement.addEventListener ('click', function() {
-        if (gameRules.includes(createdElement)){
-            console.log(printNumber);
-        }else {
-            createdElement.classList.toggle('bgCarino');
-        }
+    if (gameRules.includes(parseInt(createdElement.innerText))) {
+        createdElement.addEventListener ('click', function() {
+            alert('BOOOOOOOOM BABY!')
+            console.log(printNumber)
+        })
+    } else {
+        createdElement.addEventListener ('click', function() {
+        createdElement.classList.add('bgCarino');
     })
-    return createdElement;
+}
+return createdElement;
 }
 //-------------------------------------------------
 //FUNZIONE che genera numero randomico
