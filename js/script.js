@@ -31,3 +31,10 @@ for ( let i = 1 ; i < 101 ; i++) {
     getElementDiv(i, campoMinato, i);
 }
 });
+
+//FUNZIONE che genera numero randomico
+function randomNumberBetweenLimits (minValue, maxValue) {
+    const generatedNumber = Math.floor(Math.random() * (maxValue - minValue + 1) + minValue);
+
+    return generatedNumber;
+}
