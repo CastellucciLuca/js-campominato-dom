@@ -12,11 +12,12 @@ footer{
 }
 
 div div.box{
-    width: calc(100% / 10);
-    height: calc(100% / 10);
+    width: 50px;
+    height: 50px;
     background-color: azure;
     border: 2px solid black;
     text-align: center;
+    cursor: crosshair;
 }
 div div.box.bgCarino{
     background-color: red;
@@ -27,8 +28,8 @@ div div.box.bgCarino{
 #boolean-logo{
     height: 70px;
 }
-#campoMinato{
-    height: 600px;
-    width: 600px;
+#grid{
+    margin: 0 auto;
+    width: 550px;
 }
 
