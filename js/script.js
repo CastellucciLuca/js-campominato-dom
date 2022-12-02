@@ -12,14 +12,7 @@ function eventListenersRemover (array) {
         indexVariable.removeEventListener ('click', clickEmptyBox, true)
     }
 }
-//Quando l'utente clicca una bomba
-function clickBombBox () {
-    alert('BOOOOOOOOM BABY!')
-    //Rimozione degli event listener
-    for (i=0 ; i < 100; i++){
-        document.getElementById(`${i}`).removeEventListener ('click', clickBombBox, true)
-    }
-}
+
 //Quando l'utente clicca una casella neutra
 function clickEmptyBox () {
     console.log(this.id);
