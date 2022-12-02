@@ -38,15 +38,49 @@ function getElementDiv (contentText,playground,idBoxes,gameRules) {
     createdElement.id = contentText
     //Aggiungo l'id ad ogni Box
     idBoxes.push(createdElement.id)
-    //Event Listener box (casellina box gioco)
-    if (gameRules.includes(parseInt(createdElement.innerText))) {
-        createdElement.addEventListener ('click', clickBombBox,true);
-        } else {
-        createdElement.addEventListener ('click', clickEmptyBox,true) 
-    }
+
     return createdElement;
 }
+//--------------------------------------------------
+//funzione che aggiunge un addEventListener ad un div con relativo id
+    //eventListener sulla casella creata
+    function cellsInteraction (exceptionsList, element) {
+        if (exceptionsList.includes(parseInt(element.innerText))) {
+            element.addEventListener ('click', function () {
+                if (gameWin) {
+                    alert('YOU WIN');
+                } else if (!gameOver) {
+                    alert('BOOM BABY');
+                    gameOver = true;
+                }
+            });
+        } else {
+            element.addEventListener ('click', function () {
+                if (gameWin) {
+                    alert('YOU WIN!');
+                } else if (!gameOver) {
+                    if (!element.classList.contains('bgCarino')) {
+                        punteggio++;
+                        element.classList.add('bgCarino');
+                        element.innerText = '0';
+                        console.log(punteggio);
 
+                        if (punteggio == playgroundCells - numberOfMines) {
+                            gameWin = true;
+                        }
+                        
+                        if (gameWin === true) {
+                            alert('YOU WIN!');
+                        }
+                    }
+
+                } else {
+                    console.log('Inizia un\'altra partita premendo il tasto play');
+                    alert('Inizia un\'altra partita premendo il tasto play');
+                }
+            })
+        }
+    }
 //--------------------------------------------------
 //FUNZIONE che genera numero randomico
 function randomNumberBetweenLimits (minValue, maxValue) {
@@ -88,17 +122,37 @@ const numberOfMines = 16;
 //creazione variabile : quantitá di celle richiesta
 let playgroundCells = 100;
 
+//VARIABILI NEL GIOCO
+let gameOver = false;
+let punteggio = 0;
+let gameWin = false;
+
 // START CAMPO MINATO
+// event listener che permette l'interazione con il playButton
 play.addEventListener ('click', function() {
-    // SVUOTO IL FOGLIO PRIMA DI FAR STARTARE IL CAMPOMINATO
+    // svuoto l'area prima di iniziare il ciclo che inserisce gli elementi
     campoMinato.innerHTML = '';
-    // CICLO FOR PER CREARE 100 BOX
+    // setto variabili su false per far interagire gli event listener
+    gameOver = false;
+    gameWin = false;
+    // azzero il punteggio
+    punteggio = 0;
+
+    console.log(gameOver, gameWin, punteggio);
+    // ciclo che esegue la funzione getElementDiv 100 volte, inserendo ogni volta il numero dell'interazione come testo dell'elemento inserito
+    minesArray = [];
+
     for ( let i = 0 ; i < numberOfMines ; i++) {
         singleMinePosition(minesArray, 1, playgroundCells)
     }
-    //Se colpisco una mina mi segna il numero della casella nella console
-    console.log(minesArray);
+    console.log(minesArray)
+    
     for ( let i = 1 ; i < playgroundCells + 1 ; i++) {
-        getElementDiv(i, campoMinato,minesArray,idBoxesList);
+    getElementDiv(i, campoMinato, idBoxesList);
+    }
+
+    for ( let i = 1 ; i < playgroundCells + 1 ; i++) {
+        let elementId = document.getElementById(i);
+        cellsInteraction(minesArray, elementId)
     }
 });

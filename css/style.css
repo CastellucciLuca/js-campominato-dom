@@ -4,7 +4,7 @@ header{
 
 main{
     background-color: #7fffd4;
-    height: calc(100vh - 220px);
+    height: 600px
 }
 
 footer{
@@ -20,7 +20,7 @@ div div.box{
     cursor: crosshair;
 }
 div div.box.bgCarino{
-    background-color: red;
+    background-color: lightseagreen;
 }
 .custom-align-center{
     align-items: center;
